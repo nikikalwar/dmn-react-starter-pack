@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
-import DmnJS from "dmn-js"; // Use main dmn-js instead of just Modeler
+import DmnModeler from "dmn-js/lib/Modeler";
 
-// Import styles
 import "dmn-js/dist/assets/diagram-js.css";
-import "dmn-js/dist/assets/dmn-font/css/dmn.css"; // Fix missing toolbar icons
+import "dmn-js/dist/assets/dmn-font/css/dmn.css"; // ✅ Toolbar icons fix
 import "dmn-js/dist/assets/dmn-js-shared.css";
 import "dmn-js/dist/assets/dmn-js-drd.css";
 import "dmn-js/dist/assets/dmn-js-decision-table.css";
@@ -16,7 +15,7 @@ const DmnEditor = () => {
   useEffect(() => {
     if (!dmnRef.current) return;
 
-    modelerRef.current = new DmnJS({
+    modelerRef.current = new DmnModeler({
       container: dmnRef.current,
     });
 
@@ -36,18 +35,7 @@ const DmnEditor = () => {
     return () => modelerRef.current?.destroy(); // Cleanup
   }, []);
 
-  return (
-    <div
-      ref={dmnRef}
-      style={{
-        width: "100%",
-        height: "80vh",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        overflow: "hidden",
-      }}
-    />
-  );
+  return <div ref={dmnRef} style={{ width: "100%", height: "600px", border: "1px solid #ccc" }} />;
 };
 
 export default DmnEditor;
