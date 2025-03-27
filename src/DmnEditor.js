@@ -32,12 +32,7 @@ const DmnEditor = () => {
       </definitions>`;
 
     modelerRef.current.importXML(emptyDiagram).catch(console.error);
-  // Force reapply styles if needed
-  setTimeout(() => {
-    document.querySelectorAll("link[rel='stylesheet']").forEach((link) => {
-      link.href = link.href; // Reloads CSS
-    });
-  }, 1000);
+
     return () => modelerRef.current?.destroy(); // Cleanup
   }, []);
 
